@@ -1,7 +1,24 @@
 ---
 layout: default
 ---
-<h1>{{ page.title }}</h1>
-<p>{{ page.date | date_to_string }} - {{ page.author }}</p>
 
-{{ content }}
+<article class="post">
+  <header class="post-header">
+    <h1 class="post-title">{{ page.title }}</h1>
+    <div class="post-date">
+      📅 {{ page.date | date: "%Y年%m月%d日" }}
+      {% if page.author %} • 👤 {{ page.author }}{% endif %}
+      {% if page.categories %} • 🏷️ {{ page.categories | join: ", " }}{% endif %}
+    </div>
+  </header>
+
+  <div class="post-content">
+    {{ content }}
+  </div>
+
+  <footer style="margin-top: 60px; padding-top: 30px; border-top: 2px solid var(--border-color);">
+    <p style="text-align: center; color: var(--text-light);">
+      💬 有问题？<a href="mailto:{{ site.email }}">给我发邮件</a> 或在 <a href="{{ site.github.repository_url }}/issues">GitHub</a> 讨论
+    </p>
+  </footer>
+</article>

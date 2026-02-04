@@ -1,13 +1,54 @@
----
-layout: default
----
-
-<article class="post">
-  <header class="post-header">
-    <h1 class="post-title">{{ page.title | escape }}</h1>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title }} - {{ site.title }}</title>
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐟</text></svg>">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="site-nav">
+      <a class="site-title" href="{{ '/' | relative_url }}">
+        <span>🐟</span>
+        <span>{{ site.title }}</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="{{ '/' | relative_url }}">首页</a></li>
+        <li><a href="{{ '/about/' | relative_url }}">关于</a></li>
+        <li><a href="{{ site.github.repository_url }}" target="_blank">GitHub</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <div class="post-content">
+  <main class="site-content">
     {{ content }}
-  </div>
-</article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="{{ site.github.repository_url }}">GitHub</a>
+        <a href="{{ '/feed.xml' | relative_url }}">RSS</a>
+        <a href="mailto:{{ site.email }}">联系</a>
+      </div>
+      <p>© {{ site.time | date: '%Y' }} {{ site.author.name | default: site.title }} • 使用 Jekyll + GitHub Pages 构建 🐟</p>
+    </div>
+  </footer>
+
+  <button class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
+
+  <script>
+    // 返回顶部按钮显示/隐藏
+    const backToTop = document.querySelector('.back-to-top');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
+    });
+  </script>
+</body>
+</html>
